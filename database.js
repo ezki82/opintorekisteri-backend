@@ -2,7 +2,7 @@ const Pool = require('pg').Pool;
 const connection = new Pool({
   user: 'express',
   host: 'localhost',
-  database: 'books',
+  database: 'opintorekisteri',
   password: 'admin',
   port: 5432,
 });

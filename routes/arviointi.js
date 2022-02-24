@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const borrower = require('../models/borrower_model');
+const arviointi = require('../models/arviointi_model');
 
 router.get('/:id?',
  function(request, response) {
   if (request.params.id) {
-    borrower.getById(request.params.id, function(err, dbResult) {
+    arviointi.getById(request.params.id, function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {
@@ -13,7 +13,7 @@ router.get('/:id?',
       }
     });
   } else {
-    borrower.get(function(err, dbResult) {
+    arviointi.get(function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {
@@ -27,7 +27,7 @@ router.get('/:id?',
 
 router.post('/', 
 function(request, response) {
-  borrower.add(request.body, function(err, dbResult) {
+  arviointi.add(request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -39,7 +39,7 @@ function(request, response) {
 
 router.delete('/:id', 
 function(request, response) {
-  borrower.delete(request.params.id, function(err, dbResult) {
+  arviointi.delete(request.params.id, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -51,7 +51,7 @@ function(request, response) {
 
 router.put('/:id', 
 function(request, response) {
-  borrower.update(request.params.id, request.body, function(err, dbResult) {
+  arviointi.update(request.params.id, request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {

@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const book = require('../models/book_model');
+const opiskelija = require('../models/opiskelija_model');
 
 router.get('/:id?',
  function(request, response) {
   if (request.params.id) {
-    book.getById(request.params.id, function(err, dbResult) {
+    opiskelija.getById(request.params.id, function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {
@@ -13,37 +13,33 @@ router.get('/:id?',
       }
     });
   } else {
-    book.get(function(err, dbResult) {
+    opiskelija.get(function(err, dbResult) {
       if (err) {
         response.json(err);
       } else {
-        console.log(dbResult.rows);
         response.json(dbResult.rows);
       }
     });
   }
 });
-
-
 router.post('/', 
 function(request, response) {
-  book.add(request.body, function(err, dbResult) {
+  opiskelija.add(request.body, function(err, count) {
     if (err) {
       response.json(err);
     } else {
-      response.json(request.body);
+      response.json(request.body); 
     }
   });
 });
 
-
 router.delete('/:id', 
 function(request, response) {
-  book.delete(request.params.id, function(err, dbResult) {
+  opiskelija.delete(request.params.id, function(err, count) {
     if (err) {
       response.json(err);
     } else {
-      response.json(dbResult);
+      response.json(count);
     }
   });
 });
@@ -51,7 +47,7 @@ function(request, response) {
 
 router.put('/:id', 
 function(request, response) {
-  book.update(request.params.id, request.body, function(err, dbResult) {
+  opiskelija.update(request.params.id, request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {

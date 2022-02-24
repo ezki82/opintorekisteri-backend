@@ -7,9 +7,9 @@ const helmet = require('helmet');
 const cors = require('cors');
 const basicAuth = require('express-basic-auth');
 
-const booksRouter = require('./routes/books');
-const borrowersRouter = require('./routes/borrower');
-const usersRouter = require('./routes/user')
+const opintojaksoRouter = require('./routes/opintojakso');
+const arviointiRouter = require('./routes/arviointi');
+const opiskelijaRouter = require('./routes/opiskelija')
 const app = express();
 
 // view engine setup
@@ -30,9 +30,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/book', booksRouter);
-app.use('/borrower', borrowersRouter);
-app.use('/user', usersRouter);
+app.use('/opintojakso', opintojaksoRouter);
+app.use('/arviointi', arviointiRouter);
+app.use('/opiskelija', opiskelijaRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
